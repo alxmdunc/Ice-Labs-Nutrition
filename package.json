@@ -1,0 +1,17 @@
+{
+  "name": "ice-labs-nutrition",
+  "version": "1.0.0",
+  "description": "Custom Node.js rebuild of the Ice Labs Nutrition website.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ice-labs",
+    "nutrition",
+    "nodejs"
+  ],
+  "author": "Ice Labs Nutrition",
+  "license": "UNLICENSED"
+}
