@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Pioneer Market",
+    "address": "300 E Main St",
+    "city": "Lehi",
+    "state": "UT",
+    "zip": "84043",
+    "phone": "(801) 768-3578",
+    "lat": 40.3885,
+    "lng": -111.846
+  },
+  {
+    "name": "Day's Market",
+    "address": "3121 N Canyon Rd",
+    "city": "Provo",
+    "state": "UT",
+    "zip": "84604",
+    "phone": "(801) 375-7960",
+    "lat": 40.2684,
+    "lng": -111.6588
+  },
+  {
+    "name": "Southend Market",
+    "address": "820 N 700 E",
+    "city": "Provo",
+    "state": "UT",
+    "zip": "84604",
+    "phone": "(801) 374-4794",
+    "lat": 40.2443,
+    "lng": -111.6467
+  },
+  {
+    "name": "Peterson's Fresh Market",
+    "address": "1784 W 12600 S",
+    "city": "Riverton",
+    "state": "UT",
+    "zip": "84065",
+    "phone": "(801) 254-0761",
+    "lat": 40.5227,
+    "lng": -111.9391
+  },
+  {
+    "name": "Stoke's",
+    "address": "795 UT-198",
+    "city": "Salem",
+    "state": "UT",
+    "zip": "84653",
+    "phone": "(801) 504-6021",
+    "lat": 40.0472,
+    "lng": -111.6723
+  },
+  {
+    "name": "Meier's Meats & Fine Foods",
+    "address": "5521 UT-92 #133",
+    "city": "Highland",
+    "state": "UT",
+    "zip": "84003",
+    "phone": "(801) 642-2069",
+    "lat": 40.4318,
+    "lng": -111.7912
+  },
+  {
+    "name": "The Refinery Gym",
+    "address": "9507 670 W",
+    "city": "Sandy",
+    "state": "UT",
+    "zip": "84070",
+    "phone": "(801) 750-5021",
+    "lat": 40.5768,
+    "lng": -111.8955
+  }
+]
