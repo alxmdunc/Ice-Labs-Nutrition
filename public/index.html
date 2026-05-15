@@ -169,13 +169,14 @@
       <form class="signup-form">
         <label for="signup">Get drops and store updates</label>
         <div>
-          <input id="signup" type="email" placeholder="Email address" />
+          <input id="signup" name="email" type="email" placeholder="Email address" required />
           <button class="button button-secondary" type="submit">Join</button>
         </div>
+        <p class="signup-status" role="status" data-signup-status></p>
       </form>
       <p class="copyright">Copyright © 2026 Ice Labs. All rights reserved.</p>
     </footer>
 
-    <script src="/script.js?v=5"></script>
+    <script src="/script.js?v=6"></script>
   </body>
 </html>

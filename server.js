@@ -144,6 +144,48 @@ async function sendWholesaleEmail(lead) {
   return result;
 }
 
+async function sendSignupEmail(signup) {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error("RESEND_API_KEY is not configured.");
+  }
+
+  const html = `
+    <h1>New Ice Labs email signup</h1>
+    ${formatField("Email", signup.email)}
+    <p><strong>Submitted:</strong> ${escapeHtml(signup.submittedAt)}</p>
+  `;
+
+  const text = [
+    "New Ice Labs email signup",
+    `Email: ${signup.email || ""}`,
+    `Submitted: ${signup.submittedAt || ""}`
+  ].join("\n");
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from: CONTACT_FROM_EMAIL,
+      to: [CONTACT_TO_EMAIL],
+      subject: "New Ice Labs email signup",
+      html,
+      text,
+      reply_to: signup.email
+    })
+  });
+
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(result.message || "Resend signup email request failed.");
+  }
+
+  return result;
+}
+
 const server = http.createServer(async (req, res) => {
   if (req.method === "POST" && req.url === "/api/contact") {
     try {
@@ -165,6 +207,30 @@ const server = http.createServer(async (req, res) => {
     } catch (error) {
       console.error("Wholesale/contact email failed:", error);
       send(res, 500, JSON.stringify({ ok: false, message: "Unable to send your message right now." }), mimeTypes[".json"]);
+    }
+    return;
+  }
+
+  if (req.method === "POST" && req.url === "/api/signup") {
+    try {
+      const rawBody = await parseBody(req);
+      const data = JSON.parse(rawBody || "{}");
+
+      if (!data.email || !String(data.email).includes("@")) {
+        send(res, 400, JSON.stringify({ ok: false, message: "Please include a valid email." }), mimeTypes[".json"]);
+        return;
+      }
+
+      const submittedAt = new Date().toISOString();
+      const signup = { submittedAt, email: data.email };
+      console.log("Email signup:", JSON.stringify(signup));
+      const emailResult = await sendSignupEmail(signup);
+      console.log("Signup email sent:", JSON.stringify(emailResult));
+
+      send(res, 200, JSON.stringify({ ok: true, message: "Thanks. You're on the list." }), mimeTypes[".json"]);
+    } catch (error) {
+      console.error("Signup email failed:", error);
+      send(res, 500, JSON.stringify({ ok: false, message: "Unable to join right now." }), mimeTypes[".json"]);
     }
     return;
   }

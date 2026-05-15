@@ -832,6 +832,14 @@ textarea {
   background: var(--white);
 }
 
+.signup-status {
+  min-height: 22px;
+  margin: 0;
+  color: var(--silver);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
 .copyright {
   grid-column: 1 / -1;
   margin: 10px 0 0;

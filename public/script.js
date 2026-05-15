@@ -9,6 +9,7 @@ const storeResults = document.querySelector("[data-store-results]");
 const storeMap = document.querySelector("[data-store-map]");
 const mapCallout = document.querySelector("[data-map-callout]");
 const signupForm = document.querySelector(".signup-form");
+const signupStatus = document.querySelector("[data-signup-status]");
 const STORE_RADIUS_MILES = 30;
 const fallbackZipLocations = {
   "84003": { zip: "84003", state: "UT", lat: 40.39, lng: -111.79 },
@@ -392,7 +393,24 @@ storeSearch?.addEventListener("submit", async event => {
 
 loadStores();
 
-signupForm?.addEventListener("submit", event => {
+signupForm?.addEventListener("submit", async event => {
   event.preventDefault();
-  signupForm.reset();
+
+  const formData = new FormData(signupForm);
+  const payload = Object.fromEntries(formData.entries());
+  if (signupStatus) signupStatus.textContent = "Joining list...";
+
+  try {
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json();
+
+    if (signupStatus) signupStatus.textContent = result.message;
+    if (result.ok) signupForm.reset();
+  } catch (error) {
+    if (signupStatus) signupStatus.textContent = "Unable to join right now. Please try again shortly.";
+  }
 });
