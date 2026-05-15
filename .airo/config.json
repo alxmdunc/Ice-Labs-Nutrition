@@ -1,0 +1,7 @@
+{
+  "runtime": {
+    "serve": {
+      "command": "node server.js"
+    }
+  }
+}
