@@ -4,6 +4,7 @@
   "description": "Custom Node.js rebuild of the Ice Labs Nutrition website.",
   "main": "server.js",
   "scripts": {
+    "build": "node -e \"console.log('No build step required')\"",
     "start": "node server.js",
     "dev": "node server.js"
   },

@@ -159,9 +159,17 @@ textarea {
   overflow: hidden;
 }
 
+.hero-media picture,
 .hero-bg {
   width: 100%;
   height: 100%;
+}
+
+.hero-media picture {
+  display: block;
+}
+
+.hero-bg {
   object-fit: cover;
   object-position: center;
   opacity: 1;
@@ -284,7 +292,6 @@ h3 {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 800;
-  text-align: left;
   text-transform: uppercase;
 }
 
@@ -908,10 +915,21 @@ textarea {
     padding-top: 96px;
   }
 
+  .hero-media {
+    left: 36%;
+  }
+
+  .hero-bg {
+    object-fit: cover;
+    object-position: left top;
+    transform: translateY(-16%) scale(1.2);
+    transform-origin: left top;
+  }
+
   .hero-media::after {
     background:
       linear-gradient(90deg, var(--black), rgba(5, 6, 8, 0.76) 28%, rgba(5, 6, 8, 0.22) 58%, rgba(5, 6, 8, 0)),
-      linear-gradient(0deg, rgba(5, 6, 8, 0.38), transparent 28%);
+      linear-gradient(0deg, var(--black) 0%, rgba(5, 6, 8, 0.86) 8%, rgba(5, 6, 8, 0.38) 20%, transparent 42%);
   }
 
   .hero-copy {
